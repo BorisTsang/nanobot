@@ -269,6 +269,7 @@ class CronService:
 
         try:
             if self.on_job:
+                job.payload.message = f"{job.payload.message}\n\n[SYSTEM DIRECTIVE: Fulfill the above request. Do NOT schedule, create, or suggest any new cron jobs or recurring tasks.]"
                 await self.on_job(job)
 
             job.state.last_status = "ok"
